@@ -1,6 +1,6 @@
-# liquid_progress_indicator
+# liquid_wave_indicator
 
-[![pub package](https://img.shields.io/pub/v/liquid_progress_indicator.svg)](https://pub.dev/packages/liquid_progress_indicator)
+[![pub package](https://img.shields.io/pub/v/liquid_wave_indicator.svg)](https://pub.dev/packages/liquid_wave_indicator)
 [![style: flutter lints](https://img.shields.io/badge/style-flutter__lints-blue.svg)](https://pub.dev/packages/flutter_lints)
 
 Liquid wave fill for percent metrics (0–100 in rows, 0.0–1.0 on a single pill). You provide icons and gradients; only the animation ships with the package.
@@ -23,7 +23,7 @@ Liquid wave fill for percent metrics (0–100 in rows, 0.0–1.0 on a single pil
 
 ```yaml
 dependencies:
-  liquid_progress_indicator: ^0.1.5
+  liquid_wave_indicator: ^0.2.0
 ```
 
 ```bash
@@ -47,7 +47,7 @@ Optional **`heading`**, section **`title`** (default **`Progress`**), and a full
 
 ```dart
 import 'package:flutter/material.dart';
-import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
+import 'package:liquid_wave_indicator/liquid_wave_indicator.dart';
 
 SocialMediaReachSection(
   heading: 'Dashboard',
@@ -93,7 +93,7 @@ final items = buildSocialReachItems(
 );
 
 SocialMediaReachSection(
-  heading: 'Liquid Progress Indicator',
+  heading: 'Liquid Wave Indicator',
   title: 'Social Media Reach',
   items: items,
 );
@@ -103,7 +103,7 @@ SocialMediaReachSection(
 
 ```dart
 import 'package:flutter/material.dart';
-import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
+import 'package:liquid_wave_indicator/liquid_wave_indicator.dart';
 
 class MetricRowSnippet extends StatelessWidget {
   const MetricRowSnippet({super.key});
@@ -144,7 +144,7 @@ Keys are arbitrary (`'north'`, `'premium'`, …). One map holds **int percents**
 
 ```dart
 import 'package:flutter/material.dart';
-import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
+import 'package:liquid_wave_indicator/liquid_wave_indicator.dart';
 
 final valuesByKey = {
   'a': 72,
@@ -217,7 +217,7 @@ SocialMediaFeed(
 | `buildSocialReachItems` | Two maps → `List<SocialReachItem>` |
 | `SocialMediaPillStyle` | Layout / animation; **`socialReach`** tall preset |
 
-Full API: `dart doc` or [pub.dev](https://pub.dev/packages/liquid_progress_indicator).
+Full API: `dart doc` or [pub.dev](https://pub.dev/packages/liquid_wave_indicator).
 
 ## Example
 

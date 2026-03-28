@@ -38,7 +38,7 @@ On macOS, avoid names like `doc:demo.gif` (colon)—use **`demo.gif`** inside **
 In **`README.md`**, the **Preview** section should reference it:
 
 ```markdown
-![liquid_progress_indicator demo](doc/demo.gif)
+![liquid_wave_indicator demo](doc/demo.gif)
 ```
 
 After you push to GitHub, pub.dev will show the GIF on your package page (relative paths in the README resolve from the published package).

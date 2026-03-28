@@ -2,7 +2,7 @@
 
 This folder is **not** published on pub.dev. It depends on the parent package via a **path** dependency, which pub.dev does not allow for published packages.
 
-To publish **liquid_progress_indicator**, run from the **repository root** (parent of `example/`):
+To publish **liquid_wave_indicator**, run from the **repository root** (parent of `example/`):
 
 ```bash
 cd ..

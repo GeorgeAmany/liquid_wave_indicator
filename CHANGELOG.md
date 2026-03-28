@@ -1,3 +1,7 @@
+## 0.2.0
+
+* **Breaking:** Pub package **`liquid_wave_indicator`**. Import `package:liquid_wave_indicator/liquid_wave_indicator.dart`.
+
 ## 0.1.5
 
 * Example: **`buildSocialReachItems`**, **`SocialMediaReachSection`**, **`sample_data.dart`** (replaces `agency_branding.dart`).

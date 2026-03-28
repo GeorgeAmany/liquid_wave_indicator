@@ -1,6 +1,6 @@
 {
-    "name": "liquid_progress_indicator_example",
-    "short_name": "liquid_progress_indicator_example",
+    "name": "liquid_wave_indicator_example",
+    "short_name": "liquid_wave_indicator_example",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

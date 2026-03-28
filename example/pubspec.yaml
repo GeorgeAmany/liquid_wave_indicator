@@ -1,5 +1,5 @@
-name: liquid_progress_indicator_example
-description: Example app for liquid_progress_indicator.
+name: liquid_wave_indicator_example
+description: Example app for liquid_wave_indicator.
 publish_to: none
 version: 1.0.0
 
@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_svg: ^2.0.10+1
-  liquid_progress_indicator:
+  liquid_wave_indicator:
     path: ../
 
 dev_dependencies:

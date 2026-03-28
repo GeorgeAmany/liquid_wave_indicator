@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
+import 'package:liquid_wave_indicator/liquid_wave_indicator.dart';
 
 import 'sample_data.dart';
 
-void main() => runApp(const LiquidProgressIndicatorExampleApp());
+void main() => runApp(const LiquidWaveIndicatorExampleApp());
 
-class LiquidProgressIndicatorExampleApp extends StatelessWidget {
-  const LiquidProgressIndicatorExampleApp({super.key});
+class LiquidWaveIndicatorExampleApp extends StatelessWidget {
+  const LiquidWaveIndicatorExampleApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'liquid_progress_indicator example',
+      title: 'liquid_wave_indicator example',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
@@ -88,7 +88,7 @@ class _DemoPageState extends State<DemoPage> {
           padding: const EdgeInsets.fromLTRB(20, 20, 20, 24),
           children: [
             SocialMediaReachSection(
-              heading: 'Liquid Progress Indicator',
+              heading: 'Liquid Wave Indicator',
               title: 'Social Media Reach',
               items: _reachItems,
             ),
