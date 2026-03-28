@@ -140,7 +140,7 @@ class _DemoPageState extends State<DemoPage> {
             ExpansionTile(
               tilePadding: EdgeInsets.zero,
               title: Text(
-                'Adjust values (for GIF / testing)',
+                'Adjust values',
                 style: theme.textTheme.titleSmall?.copyWith(
                   color: theme.colorScheme.primary,
                   fontWeight: FontWeight.w600,

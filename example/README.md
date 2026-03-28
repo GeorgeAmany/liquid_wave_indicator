@@ -15,4 +15,4 @@ If platforms are missing:
 flutter create .
 ```
 
-Parent package: **[doc/record_demo.md](../doc/record_demo.md)** for turning a recording into `doc/demo.gif`.
+To refresh **`doc/demo.gif`**, see **[doc/record_demo.md](../doc/record_demo.md)**.

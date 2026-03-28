@@ -195,7 +195,7 @@ flutter run
 It demonstrates:
 
 - a minimal **white** screen: title, **Social Media Reach** row (defaults **62 / 38 / 68 / 30**), SVG icons + gradients in `agency_branding.dart`
-- an **Adjust values** panel (teal sliders) to change each platform for recordings or GIFs
+- **Adjust values** (sliders) to change each platform’s reach
 
 ---
 
@@ -205,11 +205,11 @@ This package was shaped with real teamwork: **Abdlrahman Ibrahem**, our tech lea
 
 ---
 
-## Publishing (maintainers)
+## Publishing
 
-1. Set `homepage`, `repository`, and `issue_tracker` in `pubspec.yaml` to your real URLs.
-2. `dart pub publish --dry-run` then `dart pub publish` (after `dart pub login`).
-3. Prefer a short **`description:`** in `pubspec.yaml` (pub.dev shows it in search; keep it under ~180 characters).
+1. Check `homepage`, `repository`, and `issue_tracker` in `pubspec.yaml`.
+2. `dart pub publish --dry-run`, then `dart pub publish` (`dart pub login` if needed).
+3. Keep `description:` in `pubspec.yaml` short (pub.dev search uses it; ~180 characters max).
 
 ---
 

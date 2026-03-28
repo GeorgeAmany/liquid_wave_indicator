@@ -1,6 +1,6 @@
 # Recording a README demo GIF
 
-Use the **example app** so your GIF matches what developers will see on pub.dev. It shows **Liquid Progress Indicator** / **Social Media Reach** with four pills (defaults Instagram **62%**, TikTok **38%**, Facebook **68%**, Snapchat **30%**) and **Adjust values**—move the sliders while recording so the wave fill updates.
+Record the **example** app: **Liquid Progress Indicator**, **Social Media Reach** (defaults Instagram **62%**, TikTok **38%**, Facebook **68%**, Snapchat **30%**), and **Adjust values**. Move the sliders during capture so the fill changes.
 
 ## 1. Run the example
 
@@ -17,7 +17,7 @@ Use an **iPhone-sized simulator** or a narrow window (~390×844) so the layout m
 **macOS + Simulator**
 
 - **File → Record Screen** in Simulator, or use **QuickTime Player → File → New Screen Recording**.
-- Capture **8–15 seconds**: let the wave animation run, then **drag both sliders** so viewers see the liquid fill and percentage update.
+- Capture **8–15 seconds**: let the wave run, then **drag the sliders** so the fill and percentages change.
 
 **Physical device**
 
