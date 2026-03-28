@@ -1,6 +1,11 @@
 # Example
 
-Minimal **white** screen: package title, **Social Media Reach** row with four liquid pills (defaults **62 / 38 / 68 / 30**), and **Adjust values** sliders. Gradients and SVG paths mirror a typical `AppColors` + `AssetManger` setup in `lib/agency_branding.dart`; replace `assets/icons/*.svg` with your own assets if you like.
+| File | Role |
+|------|------|
+| `lib/main.dart` | `buildSocialReachItems`, `SocialMediaReachSection`, sliders |
+| `lib/sample_data.dart` | Gradients + SVG asset paths |
+
+Default reach **98 / 32 / 85 / 27**.
 
 ## Run
 
@@ -15,4 +20,4 @@ If platforms are missing:
 flutter create .
 ```
 
-To refresh **`doc/demo.gif`**, see **[doc/record_demo.md](../doc/record_demo.md)**.
+**[doc/record_demo.md](../doc/record_demo.md)** — updating `doc/demo.gif`.

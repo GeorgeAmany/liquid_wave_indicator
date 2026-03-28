@@ -2,7 +2,6 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-/// Layout, shadows, and animation timing for [SocialMediaPill].
 class SocialMediaPillStyle {
   const SocialMediaPillStyle({
     this.width = 72,
@@ -43,7 +42,6 @@ class SocialMediaPillStyle {
   final Duration waveDuration;
   final Duration percentTweenDuration;
 
-  /// Centers the percent label horizontally (e.g. tall narrow pills).
   final bool centerPercentText;
 
   SocialMediaPillStyle copyWith({
@@ -87,9 +85,24 @@ class SocialMediaPillStyle {
       centerPercentText: centerPercentText ?? this.centerPercentText,
     );
   }
+
+  static const SocialMediaPillStyle socialReach = SocialMediaPillStyle(
+    width: 74,
+    height: 124,
+    outerBorderRadius: 20,
+    innerBorderRadius: 16,
+    iconTop: 14,
+    iconHorizontalInset: 10,
+    iconHeight: 28,
+    percentBottom: 12,
+    percentFontSize: 15,
+    shadowBlur: 12,
+    shadowOffset: Offset(0, 6),
+    shadowColor: Color(0x1A000000),
+    centerPercentText: true,
+  );
 }
 
-/// Card with animated sine-wave liquid fill for [progress] (0.0–1.0).
 class SocialMediaPill extends StatefulWidget {
   const SocialMediaPill({
     super.key,

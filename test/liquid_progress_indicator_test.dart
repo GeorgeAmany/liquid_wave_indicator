@@ -45,8 +45,32 @@ void main() {
     );
 
     expect(find.byType(SocialMediaPill), findsOneWidget);
-    await tester.pumpAndSettle();
+    await tester.pump(const Duration(milliseconds: 900));
     expect(find.text('50%'), findsOneWidget);
+  });
+
+  testWidgets('SocialMediaReachSection shows title and pills', (tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: SocialMediaReachSection(
+            heading: 'App',
+            items: const [
+              SocialReachItem(
+                label: 'A',
+                icon: SizedBox.shrink(),
+                gradient: gradient,
+                reach: 50,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+
+    expect(find.text('App'), findsOneWidget);
+    expect(find.text('Progress'), findsOneWidget);
+    expect(find.byType(SocialMediaPill), findsOneWidget);
   });
 
   test('buildSocialReachItems merges map and config', () {

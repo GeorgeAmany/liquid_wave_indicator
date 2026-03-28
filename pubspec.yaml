@@ -1,8 +1,8 @@
 name: liquid_progress_indicator
 description: >-
-  Animated liquid wave fill inside branded pills plus a horizontal feed widget
-  for social reach or any 0–100% metric. Pure Flutter; bring your own icons and gradients.
-version: 0.1.2
+  Animated liquid wave fill for any 0–100% (or 0.0–1.0) metric: goals, storage,
+  skills, health, social reach, etc. Row helpers + tall dashboard section. Pure Flutter.
+version: 0.1.5
 homepage: https://github.com/GeorgeAmany/liquid_progress_indicator
 repository: https://github.com/GeorgeAmany/liquid_progress_indicator
 issue_tracker: https://github.com/GeorgeAmany/liquid_progress_indicator/issues

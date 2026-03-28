@@ -1,3 +1,17 @@
+## 0.1.5
+
+* Example: **`buildSocialReachItems`**, **`SocialMediaReachSection`**, **`sample_data.dart`** (replaces `agency_branding.dart`).
+
+## 0.1.4
+
+* **`SocialMediaReachSection`** default **`title`**: **`Progress`**. Example uses **`Social Media Reach`**.
+* `pubspec` description update.
+
+## 0.1.3
+
+* **`SocialMediaReachSection`** — heading + section title + full-width row of tall pills (**`SocialMediaPillStyle.socialReach`**).
+* **`SocialMediaPillStyle.socialReach`** preset for dense rows.
+
 ## 0.1.2
 
 * Example: layout simplified; default reach **62 / 38 / 68 / 30**.

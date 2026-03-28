@@ -1,6 +1,6 @@
 # Recording a README demo GIF
 
-Record the **example** app: **Liquid Progress Indicator**, **Social Media Reach** (defaults Instagram **62%**, TikTok **38%**, Facebook **68%**, Snapchat **30%**), and **Adjust values**. Move the sliders during capture so the fill changes.
+Record **example/** while using **Adjust values** (defaults **98 / 32 / 85 / 27**). Move the sliders so the fill changes.
 
 ## 1. Run the example
 

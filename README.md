@@ -3,9 +3,7 @@
 [![pub package](https://img.shields.io/pub/v/liquid_progress_indicator.svg)](https://pub.dev/packages/liquid_progress_indicator)
 [![style: flutter lints](https://img.shields.io/badge/style-flutter__lints-blue.svg)](https://pub.dev/packages/flutter_lints)
 
-Animated liquid-style wave fill inside compact cards. Use **`SocialMediaFeed`** for a centered row of metrics (e.g. social reach as 0–100), or **`SocialMediaPill`** alone for any 0.0–1.0 progress. You provide **icons** (`Icon`, `Image`, `SvgPicture`, …) and **`LinearGradient`**s—no assets are bundled.
-
----
+Liquid wave fill for percent metrics (0–100 in rows, 0.0–1.0 on a single pill). You provide icons and gradients; only the animation ships with the package.
 
 ## Preview
 
@@ -13,63 +11,120 @@ Animated liquid-style wave fill inside compact cards. Use **`SocialMediaFeed`** 
   <img src="doc/demo.gif" alt="Animated demo: liquid wave pills and sliders" width="300"/>
 </p>
 
----
-
 ## Features
 
-- **Wave animation** — continuous sine-wave surface with a soft second layer
-- **Tweened percentage** — label animates when the value changes
-- **Feed helper** — `buildSocialReachItems` merges a `Map<String, int>` with per-platform config
-- **Zero hidden UI deps** — sizes are logical pixels; optional `SocialMediaPillStyle` for full control
-- **Semantics** — pills expose a label and current percent for accessibility
-
----
+- **`SocialMediaPill`** — one liquid gauge (`progress` 0.0–1.0)
+- **`SocialMediaFeed`** / **`SocialMediaReachSection`** — horizontal rows of gauges (section adds optional heading + title)
+- **`SocialMediaPillStyle.socialReach`** — tall pill preset for dense rows
+- **`buildSocialReachItems`** — merge a `Map<String, int>` (percent values) with a config map
+- Semantics: accessibility label + spoken percent
 
 ## Installation
 
-Add to your `pubspec.yaml`:
-
 ```yaml
 dependencies:
-  liquid_progress_indicator: ^0.1.2
+  liquid_progress_indicator: ^0.1.5
 ```
-
-Then:
 
 ```bash
 flutter pub get
 ```
 
-**Flutter:** `>=3.16.0` · **Dart:** `^3.9.2` (see `pubspec.yaml` in the repo for exact constraints).
+Requires **Flutter** `>=3.16.0` and **Dart** `^3.9.2` (see `pubspec.yaml`).
 
----
+## Repository layout
 
-## Quick start
+| Location | Role |
+|----------|------|
+| `lib/` | Published package (`SocialMediaPill`, `SocialMediaReachSection`, …) |
+| `example/lib/main.dart` | **`buildSocialReachItems`** + **`SocialMediaReachSection`** + sliders |
+| `example/lib/sample_data.dart` | Gradients and SVG paths for the example |
+| `test/` | Package widget tests |
+
+## Metrics row (section + tall pills)
+
+Optional **`heading`**, section **`title`** (default **`Progress`**), and a full-width row. Override **`title`** for your domain (e.g. `'Weekly goals'`, `'Social Media Reach'`).
 
 ```dart
 import 'package:flutter/material.dart';
 import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
 
-class ReachRowSnippet extends StatelessWidget {
-  const ReachRowSnippet({super.key});
+SocialMediaReachSection(
+  heading: 'Dashboard',
+  title: 'This week',
+  items: [
+    SocialReachItem(
+      label: 'Workouts',
+      reach: 60,
+      icon: const Icon(Icons.fitness_center, color: Colors.white),
+      gradient: const LinearGradient(
+        begin: Alignment.bottomCenter,
+        end: Alignment.topCenter,
+        colors: [Color(0xFF2E7D32), Colors.white],
+      ),
+    ),
+    SocialReachItem(
+      label: 'Focus',
+      reach: 40,
+      icon: const Icon(Icons.timer, color: Colors.white),
+      gradient: const LinearGradient(
+        begin: Alignment.bottomCenter,
+        end: Alignment.topCenter,
+        colors: [Color(0xFF1565C0), Colors.white],
+      ),
+    ),
+  ],
+);
+```
+
+The section hides when every **`reach`** is ≤ 0. Use **`pillStyle`** to change size.
+
+**With maps:**
+
+```dart
+final items = buildSocialReachItems(
+  reachByPlatformKey: {
+    'instagram': 98,
+    'tiktok': 32,
+    'facebook': 85,
+    'snapchat': 27,
+  },
+  configByPlatformKey: configMap,
+);
+
+SocialMediaReachSection(
+  heading: 'Liquid Progress Indicator',
+  title: 'Social Media Reach',
+  items: items,
+);
+```
+
+## Quick start (centered row)
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
+
+class MetricRowSnippet extends StatelessWidget {
+  const MetricRowSnippet({super.key});
 
   @override
   Widget build(BuildContext context) {
     final items = [
       SocialReachItem(
-        label: 'Instagram',
+        label: 'Hydration',
         reach: 72,
-        icon: const Icon(Icons.camera_alt, color: Colors.white, size: 22),
+        icon: const Icon(Icons.water_drop, color: Colors.white, size: 22),
         gradient: const LinearGradient(
-          colors: [Color(0xFFF58529), Color(0xFFDD2A7B), Color(0xFF8134AF)],
+          colors: [Color(0xFF4FC3F7), Color(0xFF0288D1)],
         ),
       ),
       SocialReachItem(
-        label: 'TikTok',
+        label: 'Steps',
         reach: 45,
-        icon: const Icon(Icons.music_note, color: Colors.white, size: 22),
+        icon: const Icon(Icons.directions_walk, color: Colors.white, size: 22),
         gradient: const LinearGradient(
-          colors: [Color(0xFF00F2EA), Color(0xFFFF0050)],
+          colors: [Color(0xFF66BB6A), Color(0xFF2E7D32)],
         ),
       ),
     ];
@@ -79,76 +134,61 @@ class ReachRowSnippet extends StatelessWidget {
 }
 ```
 
-Entries with **`reach <= 0`** are not shown in the feed.
-
----
+Items with **`reach <= 0`** are omitted.
 
 ## Usage
 
-### 1. Row from a map (`buildSocialReachItems`)
+### Values from maps (`buildSocialReachItems`)
 
-When your API returns something like `{'instagram': 72, 'tiktok': 45}`, keep numbers in **one map** and branding in another:
+Keys are arbitrary (`'north'`, `'premium'`, …). One map holds **int percents**, the other holds **label + icon + gradient** per key.
 
 ```dart
 import 'package:flutter/material.dart';
 import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
 
-final Map<String, int> reachByPlatform = {
-  'instagram': 72,
-  'tiktok': 45,
-  'facebook': 88,
-  'snapchat': 0, // hidden in the feed
+final valuesByKey = {
+  'a': 72,
+  'b': 45,
+  'c': 0, // hidden in the feed
 };
 
-final Map<String, SocialPlatformConfig> platformUi = {
-  'instagram': SocialPlatformConfig(
-    label: 'Instagram',
-    icon: const Icon(Icons.camera_alt, color: Colors.white, size: 22),
-    gradient: const LinearGradient(
-      colors: [Color(0xFFF58529), Color(0xFFDD2A7B), Color(0xFF8134AF)],
-    ),
+final uiByKey = {
+  'a': SocialPlatformConfig(
+    label: 'Metric A',
+    icon: const Icon(Icons.star, color: Colors.white, size: 22),
+    gradient: const LinearGradient(colors: [Colors.deepPurple, Colors.purple]),
   ),
-  'tiktok': SocialPlatformConfig(
-    label: 'TikTok',
-    icon: const Icon(Icons.music_note, color: Colors.white, size: 22),
-    gradient: const LinearGradient(
-      colors: [Color(0xFF00F2EA), Color(0xFFFF0050)],
-    ),
+  'b': SocialPlatformConfig(
+    label: 'Metric B',
+    icon: const Icon(Icons.bolt, color: Colors.white, size: 22),
+    gradient: const LinearGradient(colors: [Colors.orange, Colors.deepOrange]),
   ),
-  // ...facebook, snapchat, etc.
 };
 
 final items = buildSocialReachItems(
-  reachByPlatformKey: reachByPlatform,
-  configByPlatformKey: platformUi,
+  reachByPlatformKey: valuesByKey,
+  configByPlatformKey: uiByKey,
 );
 
-// Inside build():
 SocialMediaFeed(items: items);
 ```
 
-Keys present only in the reach map are built; keys without a matching **`SocialPlatformConfig`** are skipped. Order follows the **iteration order** of `reachByPlatform` (use a map literal in the order you want, or sort `items` before passing them in).
+For **SVG** icons, add [`flutter_svg`](https://pub.dev/packages/flutter_svg) and pass `SvgPicture.asset(...)` as `icon`.
 
-**SVG icons** (optional): add [`flutter_svg`](https://pub.dev/packages/flutter_svg) to your app and pass `SvgPicture.asset('assets/instagram.svg')` as `icon`.
-
----
-
-### 2. Single pill (`progress` 0.0–1.0)
+### Single pill
 
 ```dart
 SocialMediaPill(
   progress: 0.75,
-  label: 'Hydration',
-  icon: const Icon(Icons.water_drop, color: Colors.white),
+  label: 'Storage',
+  icon: const Icon(Icons.sd_storage, color: Colors.white),
   gradient: const LinearGradient(
-    colors: [Color(0xFF4FC3F7), Color(0xFF0288D1)],
+    colors: [Color(0xFF5C6BC0), Color(0xFF3949AB)],
   ),
 );
 ```
 
----
-
-### 3. Customize size and timing
+### Custom size and timing
 
 ```dart
 SocialMediaFeed(
@@ -165,26 +205,21 @@ SocialMediaFeed(
 );
 ```
 
----
-
 ## API overview
 
 | Type | Role |
 |------|------|
-| `SocialMediaFeed` | Centered `Row` of pills; filters `reach > 0` |
-| `SocialMediaPill` | One animated card; `progress` is 0.0–1.0 |
-| `SocialReachItem` | `label`, `icon`, `gradient`, `reach` (int, typically 0–100) |
-| `SocialPlatformConfig` | Same as item minus `reach`; used with `buildSocialReachItems` |
-| `buildSocialReachItems` | `Map<String,int>` + `Map<String,SocialPlatformConfig>` → `List<SocialReachItem>` |
-| `SocialMediaPillStyle` | Layout, colors, shadow, animation durations; `centerPercentText` centers the % on tall pills |
+| `SocialMediaPill` | One liquid gauge; `progress` 0.0–1.0 |
+| `SocialMediaFeed` | Centered row; skips `reach <= 0` |
+| `SocialMediaReachSection` | Heading + title + row; skips if all `reach <= 0` |
+| `SocialReachItem` | `label`, `icon`, `gradient`, `reach` (0–100) |
+| `SocialPlatformConfig` | Per-key UI for `buildSocialReachItems` |
+| `buildSocialReachItems` | Two maps → `List<SocialReachItem>` |
+| `SocialMediaPillStyle` | Layout / animation; **`socialReach`** tall preset |
 
-For full signatures, run **`dart doc`** in the package root or open the **API reference** tab on [pub.dev](https://pub.dev/packages/liquid_progress_indicator) after publishing.
+Full API: `dart doc` or [pub.dev](https://pub.dev/packages/liquid_progress_indicator).
 
----
-
-## Example project
-
-The repository includes a runnable Flutter app under **`example/`**:
+## Example
 
 ```bash
 cd example
@@ -192,27 +227,14 @@ flutter pub get
 flutter run
 ```
 
-It demonstrates:
-
-- a minimal **white** screen: title, **Social Media Reach** row (defaults **62 / 38 / 68 / 30**), SVG icons + gradients in `agency_branding.dart`
-- **Adjust values** (sliders) to change each platform’s reach
-
----
+**`example/`**: `main.dart`, `sample_data.dart`. Defaults **98 / 32 / 85 / 27**.
 
 ## Acknowledgments
 
-This package was shaped with real teamwork: **Abdlrahman Ibrahem**, our tech lead, helped guide the API direction, quality bar, and how the widgets should feel in production apps. **Mohameed Saleh** contributed alongside that effort—pairing on behavior, polish, and making sure the pieces work well together. Thank you both for collaborating on **liquid_progress_indicator** and helping ship something the community can reuse with confidence.
+We built this package together and are happy to put it out there so other developers can add liquid-style progress UI without reinventing the wheel—less grind, more focus on what makes your app special.
 
----
-
-## Publishing
-
-1. Check `homepage`, `repository`, and `issue_tracker` in `pubspec.yaml`.
-2. `dart pub publish --dry-run`, then `dart pub publish` (`dart pub login` if needed).
-3. Keep `description:` in `pubspec.yaml` short (pub.dev search uses it; ~180 characters max).
-
----
+**George Amany** and **Mohameed Saleh** did the hands-on work on the code and the package. **Abdlrahman Ibrahem**, our tech lead, guided architecture and quality. **Abdalla Gad** shaped the look and feel as designer. Huge thanks to everyone involved; we hope it saves you time.
 
 ## License
 
-See [LICENSE](LICENSE) (MIT).
+[MIT](LICENSE).
